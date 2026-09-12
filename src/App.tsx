@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import InfinityLoader from './components/InfinityLoader'
+import MarqueeTicker from './components/MarqueeTicker'
+import Footer from './components/Footer'
 import videoSrc from './assets/feature-video.mp4'
 import './App.css'
 
@@ -71,8 +73,8 @@ function App() {
       {/* Infinity Loader on initial mount */}
       {loading && <InfinityLoader duration={2200} onDone={() => setLoading(false)} />}
 
-      {/* Pure Fullscreen Background Video with Auto Audio */}
-      <div className={`bg-video-wrapper ${!loading ? 'bg-video-visible' : ''}`}>
+      {/* Hero Video Section */}
+      <section className={`hero-video-section ${!loading ? 'bg-video-visible' : ''}`}>
         <video
           ref={videoRef}
           src={videoSrc}
@@ -81,7 +83,13 @@ function App() {
           loop
           playsInline
         />
-      </div>
+      </section>
+
+      {/* Services Marquee Ticker Below Video */}
+      {!loading && <MarqueeTicker />}
+
+      {/* Footer */}
+      {!loading && <Footer />}
 
       {/* Top Docked Pill Navbar */}
       <nav className={`top-docked-nav ${!loading ? 'nav-visible' : ''}`}>
