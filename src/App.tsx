@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import InfinityLoader from './components/InfinityLoader'
 import MarqueeTicker from './components/MarqueeTicker'
+import AboutSection from './components/AboutSection'
 import Footer from './components/Footer'
 import videoSrc from './assets/feature-video.mp4'
 import './App.css'
@@ -85,7 +86,10 @@ function App() {
         />
       </section>
 
-      {/* Services Marquee Ticker Below Video */}
+      {/* About Section */}
+      {!loading && <AboutSection />}
+
+      {/* Services Marquee Ticker */}
       {!loading && <MarqueeTicker />}
 
       {/* Footer */}

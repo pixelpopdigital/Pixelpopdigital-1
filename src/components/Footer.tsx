@@ -34,8 +34,8 @@ const LEGAL_MODALS = {
 type ModalKey = keyof typeof LEGAL_MODALS;
 
 const SOCIALS = [
-  { label: "Instagram", href: "#" },
-  { label: "Behance", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/pixelpopdigital_/" },
+  { label: "Twitter", href: "https://x.com/pixelpopdigital" },
   { label: "LinkedIn", href: "#" },
 ];
 
@@ -334,7 +334,13 @@ export default function Footer() {
         </span>
         <div className="footer-bottom-links" style={styles.bottomLinks}>
           {SOCIALS.map((s) => (
-            <a className="footer-bottom-link" href={s.href} key={s.label}>
+            <a
+              className="footer-bottom-link"
+              href={s.href}
+              key={s.label}
+              target={s.href.startsWith("http") ? "_blank" : undefined}
+              rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            >
               {s.label}
             </a>
           ))}
