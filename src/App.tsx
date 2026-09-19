@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import InfinityLoader from './components/InfinityLoader'
 import MarqueeTicker from './components/MarqueeTicker'
+import TestimonialsSection from './components/TestimonialsSection'
 import AboutSection from './components/AboutSection'
+import ServicesSection from './components/ServicesSection'
 import Footer from './components/Footer'
 import videoSrc from './assets/feature-video.mp4'
 import './App.css'
@@ -89,8 +91,14 @@ function App() {
       {/* About Section */}
       {!loading && <AboutSection />}
 
+      {/* Services Section */}
+      {!loading && <ServicesSection />}
+
       {/* Services Marquee Ticker */}
       {!loading && <MarqueeTicker />}
+
+      {/* Client Feedback Testimonials */}
+      {!loading && <TestimonialsSection />}
 
       {/* Footer */}
       {!loading && <Footer />}
