@@ -4,6 +4,7 @@ const PLATFORM_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "Work", href: "/work" },
   { label: "About", href: "/#about" },
+  { label: "Query", href: "https://forms.gle/NSNfKBNK6jVb6o917" },
 ];
 
 const LEGAL_MODALS = {
@@ -24,9 +25,10 @@ const LEGAL_MODALS = {
   inquiries: {
     label: "Inquiries",
     body: [
-      "New project? Press request? General question? Send it to hello@pixelpop.studio and we'll get back to you within two working days.",
+      "New project? Press request? General question? Fill out our Query Form or send an email to hello@pixelpop.studio and we'll get back to you within two working days.",
       "For anything urgent, mention it in the subject line and we'll bump it up the queue.",
     ],
+    formUrl: "https://forms.gle/NSNfKBNK6jVb6o917",
   },
 };
 
@@ -78,6 +80,19 @@ function LegalModal({
             {para}
           </p>
         ))}
+        {'formUrl' in content && content.formUrl && (
+          <div style={{ marginTop: 20 }}>
+            <a
+              href={content.formUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-join"
+              style={{ display: "inline-block", textDecoration: "none", color: "#0A0A0A" }}
+            >
+              Open Query Form ↗
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -287,7 +302,13 @@ export default function Footer() {
         <div>
           <div className="footer-col-label">Studio</div>
           {PLATFORM_LINKS.map((link) => (
-            <a className="footer-link" href={link.href} key={link.label}>
+            <a
+              className="footer-link"
+              href={link.href}
+              key={link.label}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            >
               {link.label}
             </a>
           ))}
