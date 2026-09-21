@@ -21,49 +21,34 @@ export default function HomePage({ loading, setLoading }: HomePageProps) {
     const video = videoRef.current
     if (!video) return
 
-    video.muted = false
-    video.volume = 1.0
+    video.muted = true
+    video.loop = true
 
-    const playPromise = video.play()
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        video.muted = true
+    const playVideo = () => {
+      if (video && video.paused) {
         video.play().catch(() => {})
-
-        const enableAudioOnInteraction = () => {
-          if (videoRef.current) {
-            videoRef.current.muted = false
-            videoRef.current.volume = 1.0
-            videoRef.current.play().catch(() => {})
-          }
-          window.removeEventListener('wheel', enableAudioOnInteraction)
-          window.removeEventListener('scroll', enableAudioOnInteraction)
-          window.removeEventListener('pointerdown', enableAudioOnInteraction)
-          window.removeEventListener('keydown', enableAudioOnInteraction)
-          window.removeEventListener('touchstart', enableAudioOnInteraction)
-        }
-
-        window.addEventListener('wheel', enableAudioOnInteraction, { passive: true })
-        window.addEventListener('scroll', enableAudioOnInteraction, { passive: true })
-        window.addEventListener('pointerdown', enableAudioOnInteraction, { passive: true })
-        window.addEventListener('keydown', enableAudioOnInteraction, { passive: true })
-        window.addEventListener('touchstart', enableAudioOnInteraction, { passive: true })
-      })
-    }
-
-    const handleScrollOrWheel = () => {
-      if (videoRef.current && videoRef.current.muted) {
-        videoRef.current.muted = false
-        videoRef.current.volume = 1.0
       }
     }
 
-    window.addEventListener('scroll', handleScrollOrWheel, { passive: true })
-    window.addEventListener('wheel', handleScrollOrWheel, { passive: true })
+    playVideo()
+
+    // Ensure the video keeps looping and playing continuously even if paused
+    const handlePause = () => {
+      playVideo()
+    }
+
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        playVideo()
+      }
+    }
+
+    video.addEventListener('pause', handlePause)
+    document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      window.removeEventListener('scroll', handleScrollOrWheel)
-      window.removeEventListener('wheel', handleScrollOrWheel)
+      video.removeEventListener('pause', handlePause)
+      document.removeEventListener('visibilitychange', handleVisibility)
     }
   }, [loading])
 
@@ -80,6 +65,7 @@ export default function HomePage({ loading, setLoading }: HomePageProps) {
           className="bg-video"
           autoPlay
           loop
+          muted
           playsInline
         />
       </section>
