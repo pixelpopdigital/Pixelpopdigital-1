@@ -107,7 +107,7 @@ export default function TestimonialsSection() {
   const [headingRef, headingInView] = useInView()
 
   return (
-    <section style={styles.section}>
+    <section id="work" style={styles.section}>
       <style>{`
         .testimonial-heading-block {
           /* container only — each child animates individually */

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const PLATFORM_LINKS = [
-  { label: "How We Work", href: "#process" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/work" },
+  { label: "About", href: "/#about" },
 ];
 
 const LEGAL_MODALS = {
@@ -95,7 +94,7 @@ export default function Footer() {
   };
 
   return (
-    <footer style={styles.footer}>
+    <footer id="contact" style={styles.footer}>
       <style>{`
         .footer-brand-mark {
           font-family: 'Georgia', 'Times New Roman', serif;
