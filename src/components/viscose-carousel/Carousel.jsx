@@ -49,6 +49,7 @@ export default function Carousel() {
     left: { box: null, goo: null, layers: [], plain: null },
     right: { box: null, goo: null, layers: [], plain: null },
   });
+  const pickRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -357,6 +358,8 @@ export default function Carousel() {
         },
       });
     };
+
+    pickRef.current = pick;
 
     /* ------------------------------------------------------------ pointer */
     // World px, origin at screen centre, Y up — the space the shader works in,
@@ -1292,6 +1295,7 @@ export default function Carousel() {
 
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", updateBounds);
+      pickRef.current = null;
       container.removeEventListener("wheel", onWheel);
       container.removeEventListener("pointerdown", onPointerDown);
       container.removeEventListener("pointermove", onPointerMove);
@@ -1350,7 +1354,7 @@ export default function Carousel() {
             ref={(el) => {
               itemsRef.current[i] = el;
             }}
-            onClick={() => pick(i)}
+            onClick={() => pickRef.current?.(i)}
             className="cursor-pointer transition-all duration-300 hover:text-white py-[2px]"
             style={{ opacity: 0.35 }}
           >
