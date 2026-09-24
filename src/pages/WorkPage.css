@@ -1,3 +1,48 @@
+/* ── Carousel Hero Section ───────────────────────────────────── */
+.carousel-hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #f5f0e8;
+}
+
+.carousel-scroll-cue {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0a0a0a;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  animation: cue-bounce 2s ease-in-out infinite;
+}
+
+.carousel-scroll-cue:hover {
+  opacity: 1;
+}
+
+.carousel-scroll-cue-text {
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes cue-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
 /* ── Work Page Container ─────────────────────────────────────── */
 .work-page-container {
   min-height: 100vh;
@@ -7,7 +52,7 @@
   position: relative;
   overflow-x: hidden;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  padding-top: 100px;
+  padding-top: 0;
 }
 
 /* ── Work Page Background Ambience ────────────────────────────── */
@@ -30,7 +75,7 @@
   z-index: 1;
   max-width: 1360px;
   margin: 0 auto;
-  padding: 40px 32px 100px;
+  padding: 100px 32px 100px;
 }
 
 /* ── Work Hero Section ────────────────────────────────────────── */

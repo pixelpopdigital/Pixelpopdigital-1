@@ -4,7 +4,9 @@ import {
   X,
   TrendingUp,
   CheckCircle2,
+  ChevronDown,
 } from 'lucide-react'
+import Carousel from '../components/viscose-carousel/Carousel'
 import Footer from '../components/Footer'
 import './WorkPage.css'
 
@@ -260,9 +262,26 @@ export default function WorkPage() {
 
   return (
     <div className="work-page-container">
+      {/* Viscose Carousel Hero */}
+      <section className="carousel-hero-section">
+        <Carousel />
+        <button
+          type="button"
+          className="carousel-scroll-cue"
+          onClick={() => {
+            const target = document.getElementById('case-studies')
+            if (target) target.scrollIntoView({ behavior: 'smooth' })
+          }}
+          aria-label="Scroll to case studies"
+        >
+          <span className="carousel-scroll-cue-text">Explore Case Studies</span>
+          <ChevronDown size={20} />
+        </button>
+      </section>
+
       <div className="work-bg-ambient" />
 
-      <div className="work-content-wrapper">
+      <div id="case-studies" className="work-content-wrapper">
         {/* Header Hero */}
         <div className="work-hero-header">
           <div className="work-eyebrow-badge">
