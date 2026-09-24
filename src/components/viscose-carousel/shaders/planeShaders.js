@@ -398,28 +398,20 @@ export const fragmentShader = /* glsl */ `
 
     // --- the tag -------------------------------------------------------------
     if (ta > 0.001) {
-        // Where the ring does not reach, the page is what shows through the
-        // glass, so the label has something real to read there too.
+        // Dark glass base blending with background and card art
         vec3 under = mix(uPage, col, alpha);
-        vec3 glass = mix(under, vec3(1.0), uTagQ.x);
+        vec3 glass = mix(under, vec3(0.08, 0.015, 0.015), 0.85);
 
-        // Rim: lit where it faces the light, dark where it turns away. Signing
-        // it is what gives an edge that reads as thickness rather than as an
-        // outline drawn on.
+        // Rim: vivid neon crimson red edge catching light
         float band = clamp(1.0 + dTag / max(uTagP.z, 1.0), 0.0, 1.0);
-        glass += band * band * uTagQ.y *
-                 dot(tagNormal(ps), vec2(-0.7071, 0.7071));
+        vec3 rimCol = vec3(1.0, 0.15, 0.15);
+        glass += band * band * 0.25 * rimCol *
+                 max(0.0, dot(tagNormal(ps), vec2(-0.7071, 0.7071)) + 0.4);
 
-        // The label. Pure black or pure white, decided per pixel from what that
-        // pixel is sitting on, so a glyph crossing a light edge onto a dark one
-        // changes colour halfway across. A blend cannot do this — inverting a
-        // mid grey returns a mid grey — and picking one colour for the whole
-        // label cannot either.
+        // The label in crisp white
         vec2 tuv = (ps - uTag.xy) / (uTagP.xy * 2.0 * abs(uTag.zw)) + 0.5;
         float m = texture2D(uTagTex, clamp(tuv, 0.0, 1.0)).a;
-        float l = dot(glass, vec3(0.2126, 0.7152, 0.0722));
-        // Narrow, not hard: a step here would alias along the boundary.
-        glass = mix(glass, vec3(1.0 - smoothstep(0.46, 0.54, l)), m);
+        glass = mix(glass, vec3(1.0, 1.0, 1.0), m);
 
       col = mix(col, glass, ta);
       alpha = max(alpha, ta);

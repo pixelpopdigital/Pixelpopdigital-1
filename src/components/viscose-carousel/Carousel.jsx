@@ -118,7 +118,7 @@ export default function Carousel() {
       uK: { value: params.goo },
       uWobble: { value: params.wobble },
       uTime: { value: 0 },
-      uColor: { value: new THREE.Color("#0a0a0a") },
+      uColor: { value: new THREE.Color("#000000") },
       uAtlas: { value: blankTexture() }, // placeholder so the sampler is bound
       uGrid: { value: new THREE.Vector2(1, 1) },
       uBlend: { value: params.blend },
@@ -136,7 +136,7 @@ export default function Carousel() {
       uTag: { value: new THREE.Vector4() },
       uTagP: { value: new THREE.Vector4() },
       uTagQ: { value: new THREE.Vector4() },
-      uPage: { value: new THREE.Color("#f5f0e8") },
+      uPage: { value: new THREE.Color("#000000") },
     };
 
     const mesh = new THREE.Mesh(
@@ -270,6 +270,13 @@ export default function Carousel() {
       bounds.top = rect.top;
     };
 
+    const updateBounds = () => {
+      if (!renderer?.domElement) return;
+      const rect = renderer.domElement.getBoundingClientRect();
+      bounds.left = rect.left;
+      bounds.top = rect.top;
+    };
+
     // styleMeta too, because the breakpoint bumps are steps that vw units
     // cannot express on their own.
     const onResize = () => {
@@ -279,6 +286,7 @@ export default function Carousel() {
 
     resize();
     window.addEventListener("resize", onResize);
+    window.addEventListener("scroll", updateBounds, { passive: true });
 
     /* ------------------------------------------------------- spin & input */
     const ringCentre = { x: 0, y: 0 };
@@ -405,14 +413,19 @@ export default function Carousel() {
 
     const onWheel = (e) => {
       if (!interactive) return;
-      e.preventDefault();
-      // Trackpads send horizontal deltas too; take whichever dominates.
-      const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      // Fresh input hands the ring back to its own momentum.
+      const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
       stopPick();
       settling = false;
-      spinVel += d * params.scrollSpeed;
-      spinVel = Math.max(-params.maxSpeed, Math.min(params.maxSpeed, spinVel));
+      if (isHorizontal || e.shiftKey) {
+        e.preventDefault();
+        const d = isHorizontal ? e.deltaX : e.deltaY;
+        spinVel += d * params.scrollSpeed;
+        spinVel = Math.max(-params.maxSpeed, Math.min(params.maxSpeed, spinVel));
+      } else {
+        // Vertical wheel: spin carousel smoothly in response while permitting page scroll
+        spinVel += e.deltaY * params.scrollSpeed * 0.7;
+        spinVel = Math.max(-params.maxSpeed, Math.min(params.maxSpeed, spinVel));
+      }
     };
 
     const onPointerDown = (e) => {
@@ -586,7 +599,11 @@ export default function Carousel() {
         const el = items[i];
         if (!el) continue;
         const on = i === shown;
-        el.style.opacity = on ? "1" : "0.2";
+        el.style.opacity = on ? "1" : "0.35";
+        el.style.color = on ? "#FF2D2D" : "#777777";
+        el.style.fontWeight = on ? "600" : "400";
+        el.style.transform = on ? "translateX(-6px)" : "translateX(0px)";
+        el.style.transition = "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)";
         if (on) el.setAttribute("aria-current", "true");
         else el.removeAttribute("aria-current");
       }
@@ -1274,6 +1291,7 @@ export default function Carousel() {
       renderer.setAnimationLoop(null);
 
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", updateBounds);
       container.removeEventListener("wheel", onWheel);
       container.removeEventListener("pointerdown", onPointerDown);
       container.removeEventListener("pointermove", onPointerMove);
@@ -1312,7 +1330,7 @@ export default function Carousel() {
       {/* touch-none, or the browser claims the gesture for panning and the
           pointermove stream dies mid-drag. Nothing here scrolls — the swipe
           is the carousel. */}
-      <div ref={containerRef} className="fixed inset-0 touch-none" />
+      <div ref={containerRef} className="absolute inset-0 touch-none" />
 
       {/* Never takes the pointer: the canvas underneath handles the wheel and
           the drag, and the column has no business interrupting a throw that
@@ -1324,7 +1342,7 @@ export default function Carousel() {
         style={{
           fontFamily: '"Geist", ui-sans-serif, system-ui, sans-serif',
         }}
-        className="pointer-events-none fixed right-[12vw] top-[2.4vh] z-10 flex flex-col items-start text-right leading-[1.25] tracking-[0.01em] text-[#0a0a0a] opacity-0 max-sm:hidden"
+        className="pointer-events-auto absolute right-[5vw] top-[4vh] z-10 flex flex-col items-end text-right leading-[1.35] tracking-[0.02em] text-[#888888] opacity-0 max-sm:hidden"
       >
         {PROJECTS.map((p, i) => (
           <li
@@ -1332,9 +1350,9 @@ export default function Carousel() {
             ref={(el) => {
               itemsRef.current[i] = el;
             }}
-            // No transition, deliberately: the colour turns over the moment
-            // the ring passes the halfway point between two slots.
-            style={{ opacity: 0.2 }}
+            onClick={() => pick(i)}
+            className="cursor-pointer transition-all duration-300 hover:text-white py-[2px]"
+            style={{ opacity: 0.35 }}
           >
             {p.name}
           </li>
@@ -1367,7 +1385,7 @@ export default function Carousel() {
               metaRef.current[side].box = el;
             }}
             aria-hidden="true"
-            className="pointer-events-none fixed top-1/2 z-10 -translate-y-1/2 tracking-[-0.01em] text-[#0a0a0a]"
+            className="pointer-events-none absolute top-1/2 z-10 -translate-y-1/2 tracking-[-0.01em] text-white"
           >
             <span
               ref={(el) => {
@@ -1408,7 +1426,7 @@ export default function Carousel() {
       <div
         ref={loaderRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-1/2 z-10 -translate-x-1/2 tracking-[-0.01em] text-[#0a0a0a]"
+        className="pointer-events-none absolute left-1/2 z-10 -translate-x-1/2 tracking-widest text-[#FF2D2D] font-mono font-medium"
       />
 
       <div ref={liveRef} aria-live="polite" className="sr-only" />

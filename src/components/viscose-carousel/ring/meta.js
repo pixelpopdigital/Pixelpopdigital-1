@@ -223,12 +223,26 @@ export function createMeta(refs, params) {
         // The number is what goes in the corner layout. Its morph carries on
         // underneath, so nothing needs resyncing on the way back out.
         lead.style.display = corner ? "none" : "";
-        lead.style.fontFamily = isRight ? bigFace : smallFace;
+        lead.style.fontFamily = isRight ? bigFace : "ui-monospace, monospace, 'Geist', sans-serif";
         lead.style.fontSize = isRight ? big : small;
         lead.style.fontWeight = isRight ? bigWeight : smallWeight;
-        trail.style.fontFamily = isRight ? smallFace : bigFace;
+        trail.style.fontFamily = isRight ? "ui-monospace, monospace, 'Geist', sans-serif" : bigFace;
         trail.style.fontSize = isRight ? small : big;
         trail.style.fontWeight = isRight ? smallWeight : bigWeight;
+
+        if (!isRight) {
+          lead.style.color = "#FF2D2D";
+          lead.style.letterSpacing = "0.08em";
+          trail.style.color = "#FFFFFF";
+          trail.style.letterSpacing = "-0.02em";
+          trail.style.textShadow = "0 4px 24px rgba(0, 0, 0, 0.9)";
+        } else {
+          lead.style.color = "#F0F0F0";
+          lead.style.letterSpacing = "-0.01em";
+          lead.style.textShadow = "0 4px 24px rgba(0, 0, 0, 0.9)";
+          trail.style.color = "#FF2D2D";
+          trail.style.letterSpacing = "0.06em";
+        }
       }
     }
 

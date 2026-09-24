@@ -76,9 +76,9 @@ export function defaultParams() {
 
     // -- entry timing ----------------------------------------------------
     stagger: 0.34,
-    launchTime: 1.95,
-    spreadEase: "power2.out",
-    spreadTime: 3.6,
+    launchTime: 2.0,
+    spreadEase: "power3.out",
+    spreadTime: 3.5,
     // Where the ring goes once formed. stageAt is a fraction of the spread, so
     // 0.5 starts the move midway through the ring drawing.
     stageAt: 0.7,
@@ -90,27 +90,27 @@ export function defaultParams() {
     posY: 0,
     endScale: 4.46,
     moveTime: 2.2,
-    moveEase: "power2.inOut",
+    moveEase: "power3.inOut",
     moveDelay: 0.2,
 
     // -- scroll / drag / click, live once the entry finishes --------------
-    scrollSpeed: 0.0022, // rad/s of angular velocity per px of wheel delta
-    damping: 0.94, // velocity kept per 60fps frame
-    maxSpeed: 12, // rad/s, so one flick cannot run away
+    scrollSpeed: 0.0018, // rad/s of angular velocity per px of wheel delta
+    damping: 0.958, // silky smooth coasting velocity kept per 60fps frame
+    maxSpeed: 10, // rad/s, so one flick cannot run away
     dragSpeed: 1,
     snap: true, // settle with a plane facing front
-    snapTime: 0.8, // run-in, once the flick itself is spent
+    snapTime: 1.1, // smooth run-in, once the flick itself is spent
     snapFrom: 1, // rad/s under which the ring commits to a slot
-    pickTime: 0.55, // click-to-centre: seconds for one slot, root-scaled
-    pickEase: "power3.inOut",
+    pickTime: 0.8, // click-to-centre: seconds for one slot, root-scaled
+    pickEase: "power3.out",
 
     // -- the intro heading, in the scene ---------------------------------
     text: "Works '26",
     textSize: 41,
     textFont: "Geist",
-    textWeight: 400,
+    textWeight: 500,
     textTracking: 0, // em
-    textColor: "#0a0a0a",
+    textColor: "#FF2D2D",
     textAt: 0.42, // fraction of the spread
     textTime: 0.95,
     textStagger: 0.015,
@@ -137,12 +137,12 @@ export function defaultParams() {
     listSize: 0.9, // vw; the column's line height is unitless so rows follow
 
     // The morph between one card's words and the next.
-    nameMorphTime: 1.2,
-    nameEase: "circ.out",
-    nameBlur: 8.5, // px the outgoing word smears to before it lets go
+    nameMorphTime: 0.85,
+    nameEase: "power3.out",
+    nameBlur: 6.0, // px the outgoing word smears to before it lets go
     nameEdge: 400, // alpha gain — how abruptly the threshold sets
     nameCut: 0.33, // and the alpha it sets at
-    nameSoften: 0.35, // px of blur after it, standing in for antialiasing
+    nameSoften: 0.45, // px of blur after it, standing in for antialiasing
 
     // -- glass lip along the top and bottom ------------------------------
     glass: true,
@@ -161,14 +161,14 @@ export function defaultParams() {
     hover: true,
     touchHold: 0.16, // seconds of near-still press before a finger counts
     touchSlop: 10, // px of travel inside that window that calls it a swipe
-    lag: 0.3, // cursor smoothing, per 60fps frame
+    lag: 0.22, // cursor smoothing, per 60fps frame
     melt: 34, // px added to the ring's own blend at the cursor
     meltReach: 260, // px the softening and the wake carry
     reach: 1.7, // lean and swell falloff, in plane long edges
-    swell: 0.09,
+    swell: 0.1,
     pull: 26, // px a plane leans toward the cursor
-    grab: 0.14, // how fast a plane takes up a lean, per 60fps frame
-    release: 0.06, // and how slowly it lets go — asymmetric on purpose
+    grab: 0.18, // how fast a plane takes up a lean, per 60fps frame
+    release: 0.08, // and how slowly it lets go — asymmetric on purpose
     web: 0.2, // hovered thread width, as a fraction of the facing edge
     webReach: 1.15,
     wave: 4, // px of capillary wake at full pointer speed
