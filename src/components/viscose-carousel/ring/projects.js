@@ -1,10 +1,10 @@
 // The array controls the art atlas, ring order, index, and metadata together.
 export const PROJECTS = [
   {
-    file: "northline-sportswear.jpg",
-    name: "Northline",
-    type: "Branding",
-    year: "2024",
+    file: "pixelpop.jpg",
+    name: "Ideas that move markets.",
+    type: "",
+    year: "2023",
   },
   {
     file: "fathom-audio.jpg",
