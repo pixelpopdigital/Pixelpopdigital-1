@@ -35,8 +35,8 @@ export function defaultParams() {
     // 14" MacBook Pro at default scaling: 3024x1964 native, 1512x982 points.
     refWidth: 1512,
     refHeight: 870, // viewport, i.e. screen less menu bar and browser chrome
-    fitHeight: 0, // 0 = width alone drives scale, 1 = whichever axis is tighter
-    minScale: 0.5, // a phone is not a small desktop; bracket the extremes
+    fitHeight: 0.4, // blend width+height so the ring fits on portrait phones
+    minScale: 0.38, // a phone is not a small desktop; bracket the extremes
     maxScale: 1.75,
 
     narrowAt: 1024, // inclusive
@@ -46,14 +46,14 @@ export function defaultParams() {
     narrowPosX: -2.5,
     narrowEndScale: 4.22,
 
-    tightAt: 640, // inclusive
-    tightRadius: 0.82, // multiplies narrowRadius
-    tightPosX: -3.5,
-    tightSplit: 0.8, // the heading, competing with the ring for centre screen
-    tightName: 1.5, // the name is the only label left, so it takes the billing
-    tightNameBottom: 16, // px
-    tightNameRight: 16, // px
-    tightMetaWidth: 70, // vw of box, and so of filter region, around it
+    tightAt: 640, // inclusive — fires on all phones
+    tightRadius: 0.78, // multiplies narrowRadius
+    tightPosX: -0.5, // near-centred on portrait phone screens
+    tightSplit: 0.75, // the heading, competing with the ring for centre screen
+    tightName: 1.65, // the name is the only label left, so it takes the billing
+    tightNameBottom: 20, // px
+    tightNameRight: 14, // px
+    tightMetaWidth: 80, // vw of box, and so of filter region, around it
 
     // -- geometry, all at the reference window ---------------------------
     planeSize: 90, // long edge in px; aspect locked at 1.5 : 1

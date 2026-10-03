@@ -1435,6 +1435,25 @@ export default function Carousel() {
 
       <div ref={liveRef} aria-live="polite" className="sr-only" />
 
+      {/* Mobile-only swipe hint — fades in after the ring is formed,
+          hidden on desktop where the cursor tag serves the same role. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[72px] left-1/2 -translate-x-1/2 z-10 sm:hidden
+                   flex items-center gap-2 opacity-0 animate-[swipe-hint_0.6s_ease_4s_forwards]"
+        style={{ fontFamily: '"Geist", ui-sans-serif, system-ui, sans-serif' }}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" strokeWidth="1.6" strokeLinecap="round">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+        <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase' }}>
+          Swipe to spin
+        </span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" strokeWidth="1.6" strokeLinecap="round" style={{ transform: 'scaleX(-1)' }}>
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+
       {/* Alpha multiplied up hard and biased down, so a pixel is either fully
           opaque or gone. That is what fuses two blurred words into one
           silhouette instead of laying them over each other. Region is
