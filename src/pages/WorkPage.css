@@ -44,40 +44,54 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  background: rgba(18, 4, 4, 0.7);
-  border: 1px solid rgba(229, 9, 20, 0.3);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  gap: 6px;
+  /* Dark glass base */
+  background: rgba(8, 8, 10, 0.72);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.2); /* top-edge glass highlight */
   border-radius: 9999px;
-  padding: 10px 22px;
+  padding: 12px 28px 10px;
   cursor: pointer;
-  color: #FFFFFF;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(229, 9, 20, 0.15);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  animation: cue-bounce 2.6s ease-in-out infinite;
+  color: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 2px 0 0 rgba(255, 255, 255, 0.06) inset, /* inner top sheen */
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: cue-bounce 2.8s ease-in-out infinite;
 }
 
-.carousel-scroll-cue:hover {
-  background: rgba(229, 9, 20, 0.2);
-  border-color: #E50914;
-  color: #FF2D2D;
-  box-shadow: 0 8px 30px rgba(229, 9, 20, 0.35);
-  transform: translateX(-50%) translateY(-2px);
+.carousel-scroll-cue--glass:hover {
+  background: rgba(18, 18, 22, 0.88);
+  border-color: rgba(255, 255, 255, 0.22);
+  border-top-color: rgba(255, 255, 255, 0.38);
+  color: #ffffff;
+  box-shadow:
+    0 2px 0 0 rgba(255, 255, 255, 0.1) inset,
+    0 12px 40px rgba(0, 0, 0, 0.65),
+    0 0 24px rgba(255, 255, 255, 0.07);
+  transform: translateX(-50%) translateY(-3px);
 }
 
 .carousel-scroll-cue-text {
   font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #FF3B30;
+  color: inherit;
+  opacity: 0.82;
+}
+
+.carousel-scroll-cue--glass .carousel-scroll-cue-text {
+  opacity: 1;
 }
 
 @keyframes cue-bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
+  50% { transform: translateX(-50%) translateY(7px); }
 }
 
 /* ── Responsive: Phones (≤ 480px) ───────────────────────────── */

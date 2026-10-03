@@ -267,15 +267,15 @@ export default function WorkPage() {
         <Carousel />
         <button
           type="button"
-          className="carousel-scroll-cue"
+          className="carousel-scroll-cue carousel-scroll-cue--glass"
           onClick={() => {
             const target = document.getElementById('case-studies')
             if (target) target.scrollIntoView({ behavior: 'smooth' })
           }}
           aria-label="Scroll to case studies"
         >
-          <span className="carousel-scroll-cue-text">Explore Case Studies</span>
-          <ChevronDown size={20} />
+          <span className="carousel-scroll-cue-text">Ideas Into Impact</span>
+          <ChevronDown size={18} strokeWidth={1.8} />
         </button>
       </section>
 
