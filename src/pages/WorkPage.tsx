@@ -1,23 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
   ArrowRight,
   X,
   TrendingUp,
   CheckCircle2,
   ChevronDown,
+  Sparkles,
 } from 'lucide-react'
+// @ts-expect-error - Carousel is a JSX component
 import Carousel from '../components/viscose-carousel/Carousel'
 import Footer from '../components/Footer'
 import './WorkPage.css'
 
-interface CaseStudy {
+export interface CaseStudy {
   id: string
   client: string
   year: string
-  category: 'Branding' | 'Social Strategy' | 'Digital & Web' | 'Production' | 'Growth & Media'
+  category: string
   title: string
   shortDescription: string
-  featured?: boolean
   monogram: string
   bgGradient: string
   highlightStat: string
@@ -36,16 +37,49 @@ interface CaseStudy {
 
 const CASE_STUDIES: CaseStudy[] = [
   {
-    id: 'northline',
+    id: 'fathom-audio',
+    client: 'Fathom Audio',
+    year: '2024',
+    category: 'Growth & Media',
+    title: 'The Resonance Launch: Scaling High-Fidelity Studio Hardware DTC',
+    shortDescription:
+      'Full-funnel paid media strategy, interactive frequency visualizers, and conversion storytelling for a premier audiophile studio monitor rollout.',
+    monogram: 'FA',
+    bgGradient: 'radial-gradient(circle at 45% 45%, rgba(232, 220, 200, 0.16) 0%, rgba(26, 23, 19, 0.9) 60%, #0a0a0a 100%)',
+    highlightStat: '$2.4M',
+    statLabel: 'Direct DTC Revenue in 90 Days',
+    tags: ['Paid Acquisition', 'Motion Design', 'Conversion Funnels'],
+    challenge:
+      'High-ticket audiophile hardware requires profound sensory trust and technical education before customers commit to purchase online.',
+    solution:
+      'We designed interactive sound demo visualizers, hyper-targeted creator seeding campaigns, and rigorous conversion rate optimized landing funnels.',
+    results: [
+      '4.2x Revenue multiplier compared to previous launch',
+      '$2.4M DTC revenue generated in 90 days',
+      '38% lower blended customer acquisition cost (CAC)',
+    ],
+    quote: {
+      text: 'The campaign strategy paid for itself twice over before the launch window even closed. Rare to see that kind of clarity.',
+      author: 'Marcus Webb',
+      role: 'CMO, Fathom Audio',
+    },
+    deliverables: [
+      'Multi-Platform Paid Media Funnels',
+      '3D Product Explainer Animations',
+      'Interactive Spec Comparison Landing Pages',
+      'Lifecycle Email Automation Series',
+    ],
+  },
+  {
+    id: 'northline-sportswear',
     client: 'Northline Sportswear',
     year: '2024',
     category: 'Branding',
-    featured: true,
-    title: 'Transforming Athletic Performance into an Inescapable Cultural Uniform',
+    title: 'Transforming Athletic Kinetics into an Inescapable Cultural Uniform',
     shortDescription:
       'Complete identity overhaul, packaging systems, and digital launch campaign that propelled Northline into 200+ retail storefronts nationwide.',
     monogram: 'NL',
-    bgGradient: 'radial-gradient(circle at 60% 40%, #7A1616 0%, #360B0B 50%, #120404 100%)',
+    bgGradient: 'radial-gradient(circle at 55% 40%, rgba(220, 205, 175, 0.15) 0%, rgba(24, 23, 21, 0.9) 60%, #080808 100%)',
     highlightStat: '+340% ROAS',
     statLabel: 'Launch Window Performance',
     tags: ['Brand Identity', 'Custom Typography', 'Packaging', 'Art Direction'],
@@ -71,40 +105,6 @@ const CASE_STUDIES: CaseStudy[] = [
     ],
   },
   {
-    id: 'fathom-audio',
-    client: 'Fathom Audio',
-    year: '2024',
-    category: 'Growth & Media',
-    title: 'The Resonance Launch: Scaling High-Fidelity Hardware DTC',
-    shortDescription:
-      'Full-funnel paid media strategy and high-converting launch storytelling for a premier audiophile studio monitor rollout.',
-    monogram: 'FA',
-    bgGradient: 'radial-gradient(circle at 40% 50%, #B08D57 0%, #4D3C21 55%, #141008 100%)',
-    highlightStat: '$2.4M',
-    statLabel: 'Direct DTC Revenue in 90 Days',
-    tags: ['Paid Acquisition', 'Motion Design', 'Conversion Funnels'],
-    challenge:
-      'High price point audiophile audio gear requires extensive education and deep trust before a buyer converts online.',
-    solution:
-      'We designed interactive sound demo visualizers, hyper-targeted creator seeding campaigns, and rigorous conversion rate optimized landing funnels.',
-    results: [
-      '4.2x Revenue multiplier compared to previous launch',
-      '$2.4M DTC revenue generated in 90 days',
-      '38% lower blended customer acquisition cost (CAC)',
-    ],
-    quote: {
-      text: 'The campaign strategy paid for itself twice over before the launch window even closed. Rare to see that kind of clarity.',
-      author: 'Marcus Webb',
-      role: 'CMO, Fathom Audio',
-    },
-    deliverables: [
-      'Multi-Platform Paid Media Funnels',
-      '3D Product Explainer Animations',
-      'Interactive Spec Comparison Landing Pages',
-      'Lifecycle Email Automation Series',
-    ],
-  },
-  {
     id: 'meridian-coffee',
     client: 'Meridian Coffee Co.',
     year: '2024',
@@ -113,12 +113,12 @@ const CASE_STUDIES: CaseStudy[] = [
     shortDescription:
       'A tactile rebrand, bespoke tin & pouch packaging architecture, and eCommerce platform celebrating single-origin roasting traditions.',
     monogram: 'MC',
-    bgGradient: 'radial-gradient(circle at 50% 50%, #3E5C54 0%, #1D2E29 55%, #0B1210 100%)',
+    bgGradient: 'radial-gradient(circle at 50% 50%, rgba(215, 198, 168, 0.15) 0%, rgba(25, 23, 19, 0.9) 60%, #0a0908 100%)',
     highlightStat: '+185%',
     statLabel: 'Subscription DTC Growth',
     tags: ['Rebrand', 'Sustainable Packaging', 'Shopify Plus'],
     challenge:
-      'Meridian had loyal local cafe patrons but struggled to retain online subscription customers due to outdated packaging and fragmented brand cues.',
+      'Meridian had loyal local cafe patrons but struggled to retain online subscription customers due to fragmented digital brand cues.',
     solution:
       'We crafted an earthy yet elevated minimalist packaging hierarchy, bespoke foil stamp accents, and an intuitive recurring subscription web portal.',
     results: [
@@ -145,9 +145,9 @@ const CASE_STUDIES: CaseStudy[] = [
     category: 'Digital & Web',
     title: 'Editorial Luxury Redefined for the Architectural Living Era',
     shortDescription:
-      'Next-generation 3D spatial web catalog and brand editorial elevating bespoke lighting & artisanal home goods.',
+      'Next-generation 3D spatial web catalog and brand editorial elevating bespoke lighting & artisanal interior fixtures.',
     monogram: 'HA',
-    bgGradient: 'radial-gradient(circle at 60% 30%, #8A4B3B 0%, #3D1C14 55%, #140805 100%)',
+    bgGradient: 'radial-gradient(circle at 45% 45%, rgba(235, 222, 198, 0.16) 0%, rgba(28, 25, 22, 0.9) 60%, #0c0b0a 100%)',
     highlightStat: '+220%',
     statLabel: 'Trade Inquiries & Conversion',
     tags: ['3D Web Experience', 'UI/UX Design', 'Art Direction'],
@@ -181,7 +181,7 @@ const CASE_STUDIES: CaseStudy[] = [
     shortDescription:
       'Turnkey social-first content engine and community play generating tens of millions of views for clean clinical skincare.',
     monogram: 'VB',
-    bgGradient: 'radial-gradient(circle at 35% 65%, #2A4736 0%, #15241B 55%, #080D0A 100%)',
+    bgGradient: 'radial-gradient(circle at 50% 50%, rgba(210, 202, 180, 0.14) 0%, rgba(22, 23, 20, 0.9) 60%, #090a09 100%)',
     highlightStat: '16.8M',
     statLabel: 'Viral Organic Views',
     tags: ['TikTok & Reels Native', 'Influencer Strategy', 'Community'],
@@ -215,7 +215,7 @@ const CASE_STUDIES: CaseStudy[] = [
     shortDescription:
       'Futuristic CGI film, sonic branding, and spatial interface prototypes exploring next-generation neural audio synthesis.',
     monogram: 'HL',
-    bgGradient: 'radial-gradient(circle at 50% 50%, #331A4D 0%, #1B0C2B 55%, #0A0410 100%)',
+    bgGradient: 'radial-gradient(circle at 55% 45%, rgba(228, 218, 198, 0.17) 0%, rgba(27, 25, 24, 0.9) 60%, #0a0a0c 100%)',
     highlightStat: 'Red Dot',
     statLabel: 'Design Award Distinction',
     tags: ['3D CGI Film', 'Sonic Identity', 'Spatial Computing'],
@@ -236,29 +236,264 @@ const CASE_STUDIES: CaseStudy[] = [
     deliverables: [
       '3-Minute CGI Product Manifesto Film',
       'Dynamic Sonic Logo & Acoustic Library',
-      'Interactive Interactive Product Teaser',
+      'Interactive Product Teaser',
       'Keynote Presentation Master Deck',
+    ],
+  },
+  {
+    id: 'aethel-horology',
+    client: 'Aethel Horology',
+    year: '2025',
+    category: 'Branding',
+    title: 'Horological Precision Meets Contemporary Monochromatic Identity',
+    shortDescription:
+      'Timeless Swiss watchmaking identity, engraved collector packaging, and bespoke typography for limited numbered micro-editions.',
+    monogram: 'AH',
+    bgGradient: 'radial-gradient(circle at 50% 45%, rgba(235, 226, 210, 0.18) 0%, rgba(25, 24, 22, 0.9) 60%, #080808 100%)',
+    highlightStat: '3.8x',
+    statLabel: 'Collector Edition Oversubscription',
+    tags: ['Brand Identity', 'Packaging Suite', 'Luxury Typography'],
+    challenge:
+      'Independent timepiece micro-brands struggle against legacy Swiss heritage houses without deeply compelling provenance and tactile design excellence.',
+    solution:
+      'We engineered a bespoke serif typeface, milled aluminum packaging cases, and an archival certificate verification experience.',
+    results: [
+      'All 500 initial timepiece allocations sold out in 14 minutes',
+      '3.8x oversubscribed waitlist with 4,200 verified buyers',
+      'Featured in Hodinkee and Wallpaper* Design Awards',
+    ],
+    quote: {
+      text: 'Pixelpop brought an authentic haute-horlogerie sensibility that rivaled centurylong heritage houses.',
+      author: 'Maximilian Brandt',
+      role: 'Founder & Master Watchmaker',
+    },
+    deliverables: [
+      'Custom Bespoke Logotype & Emblem',
+      'Milled Aluminum & Leather Case System',
+      'Numbered Edition Authenticity Ledger',
+      'Cinematic Macro Product Photography',
+    ],
+  },
+  {
+    id: 'solstice-health',
+    client: 'Solstice Health',
+    year: '2025',
+    category: 'Digital & Web',
+    title: 'Next-Gen Longevity Intelligence: Precision Bio-Tracking Interface',
+    shortDescription:
+      'Minimalist web dashboard and mobile interface translating complex biomarkers into clear, actionable daily longevity protocols.',
+    monogram: 'SH',
+    bgGradient: 'radial-gradient(circle at 45% 55%, rgba(220, 210, 185, 0.15) 0%, rgba(24, 23, 20, 0.9) 60%, #090909 100%)',
+    highlightStat: '94%',
+    statLabel: 'Active 90-Day Member Retention',
+    tags: ['UI/UX Design', 'Design System', 'HealthTech Web App'],
+    challenge:
+      'Biomarker analysis dashboards overwhelm members with dense medical charts, leading to user fatigue and high churn after month one.',
+    solution:
+      'We designed an ethereal, serene data interface utilizing warm beige gradients, ambient progress rings, and narrative daily health summaries.',
+    results: [
+      '94% active member retention past 90 days',
+      'Reduced average onboarding friction time by 62%',
+      'Acquired 45,000+ active beta subscribers',
+    ],
+    quote: {
+      text: 'Our members describe opening the app as calming rather than stressful. That single UX shift changed our retention metrics entirely.',
+      author: 'Dr. Camille Laurent',
+      role: 'Chief Medical Officer',
+    },
+    deliverables: [
+      'End-to-End Web & Mobile App UI/UX',
+      'Comprehensive Multi-State Design System',
+      'Interactive Biomarker Trend Charts',
+      'Physician Portal & Clinical Dashboard',
+    ],
+  },
+  {
+    id: 'kroma-ceramics',
+    client: 'Kroma Studio',
+    year: '2024',
+    category: 'Production',
+    title: 'Cinematic Lighting & Brand Film Direction for Scandinavian Ceramics',
+    shortDescription:
+      '35mm film capture, tactile physical textures, and global campaign direction celebrating artisanal Nordic stoneware craft.',
+    monogram: 'KS',
+    bgGradient: 'radial-gradient(circle at 50% 50%, rgba(230, 218, 195, 0.16) 0%, rgba(26, 24, 21, 0.9) 60%, #0a0a09 100%)',
+    highlightStat: '5x',
+    statLabel: 'International Design Awards',
+    tags: ['Art Direction', '35mm Film', 'Editorial Photography'],
+    challenge:
+      'Industrial mass production has dulled consumer appreciation for handmade stoneware irregularities and natural earth glazes.',
+    solution:
+      'We directed a meditative slow-cinema docuseries documenting kiln firings, raw clay foraging, and Michelin-star restaurant table settings.',
+    results: [
+      '5 international design & cinematography awards',
+      'Partnership agreements with 18 Michelin-starred venues',
+      '+310% wholesale international export volume',
+    ],
+    quote: {
+      text: 'Their lens captured the warmth and soul of our pottery in ways words never could.',
+      author: 'Astrid Lindholm',
+      role: 'Creative Director, Kroma',
+    },
+    deliverables: [
+      '35mm Brand Documentary Film',
+      'High-Resolution Lookbook Photography',
+      'Printed Linen Hardcover Catalog',
+      'International Exhibition Visual Assets',
+    ],
+  },
+  {
+    id: 'aura-fragrance',
+    client: 'Aura Fragrance',
+    year: '2024',
+    category: 'Growth & Media',
+    title: 'Scent Without Borders: Niche Perfumery Scale via Olfactory Storytelling',
+    shortDescription:
+      'Multi-channel creator seeding and hyper-sensory video vignettes driving record launch day sell-outs across Europe & US.',
+    monogram: 'AF',
+    bgGradient: 'radial-gradient(circle at 55% 45%, rgba(232, 222, 202, 0.17) 0%, rgba(27, 24, 20, 0.9) 60%, #0c0b0a 100%)',
+    highlightStat: '+410%',
+    statLabel: 'Launch Day ROAS',
+    tags: ['Paid Acquisition', 'Creator Seeding', 'E-Commerce Growth'],
+    challenge:
+      'Selling bespoke perfume without physical scent testing requires evocative narrative hooks that trigger emotional resonance online.',
+    solution:
+      'We created a discovery sampler funnel paired with micro-mood films evoking memory, rain, smoke, and coastal midnight air.',
+    results: [
+      '+410% ROAS during global launch sprint',
+      'Discovery sampler kit converted 48% of buyers into full bottle orders',
+      'Achieved profitability in month one of acquisition',
+    ],
+    quote: {
+      text: 'Pixelpop solved our online fragrance conversion problem through pure visual poetry and ruthless funnel optimization.',
+      author: 'Julian Thorne',
+      role: 'Head of Growth, Aura',
+    },
+    deliverables: [
+      'Paid Social Video Ad Engine',
+      'Interactive Discovery Quiz Landing Experience',
+      'Micro-Sample Unboxing Experience Design',
+      'Retention & VIP Replenishment Automations',
+    ],
+  },
+  {
+    id: 'nomad-goods',
+    client: 'Nomad Goods Co.',
+    year: '2025',
+    category: 'Social Strategy',
+    title: 'Cultivating Modern Wilderness: Documentary Storytelling for Field Gear',
+    shortDescription:
+      'Immersive field testing expeditions and episodic Reels/YouTube series transforming utilitarian luggage into an explorer icon.',
+    monogram: 'NG',
+    bgGradient: 'radial-gradient(circle at 45% 50%, rgba(218, 206, 182, 0.15) 0%, rgba(24, 23, 20, 0.9) 60%, #090908 100%)',
+    highlightStat: '2.1M',
+    statLabel: 'Engaged Community Members',
+    tags: ['Social Content Engine', 'Adventure Doc', 'Community Strategy'],
+    challenge:
+      'Travel gear brands frequently rely on generic stock landscapes that fail to inspire modern discerning adventurers.',
+    solution:
+      'We deployed expedition creators to Iceland, Patagonia, and Japan to stress-test gear in real conditions while documenting cinematic field journals.',
+    results: [
+      '2.1M highly engaged community members across channels',
+      '+260% increase in user-generated content submissions',
+      'Zero paid ad spend needed for new duffle line sellout',
+    ],
+    quote: {
+      text: 'They don’t just make social content—they build authentic cultural movements with staying power.',
+      author: 'Kai Sutherland',
+      role: 'Founder & Expedition Lead',
+    },
+    deliverables: [
+      'Multi-Continental Expedition Production',
+      'Weekly Episodic Social Mini-Series',
+      'Ambassador Athlete Program Guidelines',
+      'Community Dispatch Newsletter Architecture',
+    ],
+  },
+  {
+    id: 'vespera-living',
+    client: 'Vespera Living',
+    year: '2025',
+    category: 'Digital & Web',
+    title: 'Monolithic Architecture & Spatial Web Presence for Modern Villas',
+    shortDescription:
+      'Minimalist architectural showcase, real-time sunlight path rendering, and high-net-worth buyer portal for custom luxury residences.',
+    monogram: 'VL',
+    bgGradient: 'radial-gradient(circle at 50% 40%, rgba(238, 228, 210, 0.18) 0%, rgba(27, 26, 23, 0.9) 60%, #0a0a0b 100%)',
+    highlightStat: '+265%',
+    statLabel: 'Qualified Private Buyer Inquiries',
+    tags: ['3D Web Experience', 'Luxury Real Estate', 'Web Architecture'],
+    challenge:
+      'Ultra-luxury architectural developments need digital presentations that match the gravity, serenity, and craftsmanship of the physical buildings.',
+    solution:
+      'We engineered a silent, contemplative digital gallery with ambient architectural soundscapes, high-res blueprint zooms, and private broker scheduling.',
+    results: [
+      '+265% qualified buyer inquiries in first quarter',
+      'Average private browsing time of 6m 40s per visit',
+      'Pre-sold 8 bespoke residences prior to groundbreaking',
+    ],
+    quote: {
+      text: 'The website became our most powerful sales asset. It conveys prestige with remarkable subtlety.',
+      author: 'Dominic Sterling',
+      role: 'Managing Principal, Vespera',
+    },
+    deliverables: [
+      'Bespoke WebGL Architectural Gallery',
+      'Private VIP Buyer Client Portal',
+      'Interactive Solar Path & Material Inspector',
+      'Printed Architectural Monograph Layouts',
     ],
   },
 ]
 
-const CATEGORIES = [
-  'All Work',
-  'Branding',
-  'Social Strategy',
-  'Digital & Web',
-  'Production',
-  'Growth & Media',
-]
-
 export default function WorkPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All Work')
   const [activeModalProject, setActiveModalProject] = useState<CaseStudy | null>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  const filteredProjects =
-    selectedCategory === 'All Work'
-      ? CASE_STUDIES
-      : CASE_STUDIES.filter((p) => p.category === selectedCategory)
+  // Close modal on ESC key and prevent body scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveModalProject(null)
+      }
+    }
+
+    if (activeModalProject) {
+      document.body.style.overflow = 'hidden'
+      window.addEventListener('keydown', handleKeyDown)
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [activeModalProject])
+
+  // Staggered scroll-triggered fade-in animation using IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1,
+      }
+    )
+
+    cardRefs.current.forEach((el) => {
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className="work-page-container">
@@ -294,51 +529,39 @@ export default function WorkPage() {
           </h1>
 
           <p className="work-hero-subcopy">
-            A curated showcase of identities we’ve built, digital platforms we’ve engineered,
-            and high-velocity campaigns that captured global attention.
+            A curated showcase of 12 defining projects across branding, high-velocity acquisition,
+            bespoke digital architecture, and cinematic production.
           </p>
         </div>
 
         {/* Studio Metrics Strip */}
         <div className="work-metrics-strip">
           <div className="work-metric-item">
-            <div className="work-metric-number">$48M+</div>
-            <div className="work-metric-label">Client Revenue Scaled</div>
+            <div className="work-metric-number">100%</div>
+            <div className="work-metric-label">Founder-Led Projects</div>
           </div>
           <div className="work-metric-item">
-            <div className="work-metric-number">120M+</div>
-            <div className="work-metric-label">Organic Video Impressions</div>
+            <div className="work-metric-number">24hr</div>
+            <div className="work-metric-label">Average Response Time</div>
           </div>
           <div className="work-metric-item">
-            <div className="work-metric-number">14</div>
-            <div className="work-metric-label">Industry & Design Awards</div>
+            <div className="work-metric-number">1-on-1</div>
+            <div className="work-metric-label">Dedicated Attention per Client</div>
           </div>
           <div className="work-metric-item">
-            <div className="work-metric-number">98.4%</div>
-            <div className="work-metric-label">Client Retention Rate</div>
+            <div className="work-metric-number">Unlimited</div>
+            <div className="work-metric-label">Revisions Until You Love It</div>
           </div>
         </div>
 
-        {/* Filter Bar */}
-        <div className="work-filter-bar">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              className={`work-filter-btn ${selectedCategory === cat ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
+        {/* 12 Projects Responsive Grid */}
         <div className="work-grid">
-          {filteredProjects.map((project) => (
+          {CASE_STUDIES.map((project, idx) => (
             <div
               key={project.id}
-              className={`work-card ${project.featured ? 'work-grid-featured' : ''}`}
+              ref={(el) => { cardRefs.current[idx] = el }}
+              className="work-card"
+              style={{ animationDelay: `${(idx % 3) * 120}ms` }}
               onClick={() => setActiveModalProject(project)}
             >
               <div className="work-card-visual">
@@ -351,7 +574,7 @@ export default function WorkPage() {
 
                 <div className="work-card-category-pill">{project.category}</div>
                 <div className="work-card-stat-pill">
-                  <TrendingUp size={14} color="#FF6666" />
+                  <TrendingUp size={13} color="#E8DCC8" />
                   <span>{project.highlightStat}</span>
                 </div>
 
@@ -380,7 +603,7 @@ export default function WorkPage() {
                   </div>
 
                   <span className="work-card-action">
-                    Explore Case Study <ArrowRight size={15} />
+                    Explore Case Study <ArrowRight size={14} />
                   </span>
                 </div>
               </div>
@@ -390,9 +613,12 @@ export default function WorkPage() {
 
         {/* Work CTA Banner */}
         <div className="work-cta-banner">
+          <div className="work-cta-badge">
+            <Sparkles size={14} /> Next Project Sprint
+          </div>
           <h2 className="work-cta-title">Ready to build something unforgettable?</h2>
           <p className="work-cta-subtext">
-            Whether launching a category-defining brand or scaling your existing reach, our team is
+            Whether launching a category-defining brand or scaling your existing reach, our founder-led team is
             ready to make it extraordinary.
           </p>
           <a
@@ -409,11 +635,14 @@ export default function WorkPage() {
         </div>
       </div>
 
-      {/* Case Study Detail Modal */}
+      {/* Case Study Detail Modal (Click to Expand) */}
       {activeModalProject && (
         <div
           className={`case-modal-overlay ${activeModalProject ? 'open' : ''}`}
           onClick={() => setActiveModalProject(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-case-title"
         >
           <div
             className="case-modal-dialog"
@@ -423,9 +652,9 @@ export default function WorkPage() {
               type="button"
               className="case-modal-close-btn"
               onClick={() => setActiveModalProject(null)}
-              aria-label="Close dialog"
+              aria-label="Close case study details"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
 
             <div
@@ -435,7 +664,7 @@ export default function WorkPage() {
               <div className="case-modal-eyebrow">
                 {activeModalProject.client} &bull; {activeModalProject.category} &bull; {activeModalProject.year}
               </div>
-              <h2 className="case-modal-title">{activeModalProject.title}</h2>
+              <h2 id="modal-case-title" className="case-modal-title">{activeModalProject.title}</h2>
 
               <div className="case-modal-stats-row">
                 <div className="case-modal-stat-box">
@@ -446,7 +675,7 @@ export default function WorkPage() {
             </div>
 
             <div className="case-modal-body">
-              <div>
+              <div className="case-modal-main-col">
                 <div className="case-modal-section-title">The Challenge</div>
                 <p className="case-modal-text">{activeModalProject.challenge}</p>
 
@@ -454,20 +683,10 @@ export default function WorkPage() {
                 <p className="case-modal-text">{activeModalProject.solution}</p>
 
                 <div className="case-modal-section-title">Key Impact & Outcomes</div>
-                <div style={{ marginBottom: '24px' }}>
+                <div className="case-modal-results-list">
                   {activeModalProject.results.map((res, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        marginBottom: '10px',
-                        fontSize: '14.5px',
-                        color: '#F3F1EA',
-                      }}
-                    >
-                      <CheckCircle2 size={16} color="#22C55E" />
+                    <div key={i} className="case-modal-result-row">
+                      <CheckCircle2 size={16} color="#E8DCC8" />
                       <span>{res}</span>
                     </div>
                   ))}
@@ -475,22 +694,14 @@ export default function WorkPage() {
 
                 <div className="case-modal-quote">
                   &ldquo;{activeModalProject.quote.text}&rdquo;
-                  <div
-                    style={{
-                      fontFamily: 'Helvetica Neue, sans-serif',
-                      fontSize: '13px',
-                      fontStyle: 'normal',
-                      color: 'rgba(232, 220, 200, 0.6)',
-                      marginTop: '8px',
-                    }}
-                  >
+                  <div className="case-modal-quote-author">
                     — {activeModalProject.quote.author}, {activeModalProject.quote.role}
                   </div>
                 </div>
               </div>
 
-              <div>
-                <div className="case-modal-section-title">Deliverables</div>
+              <div className="case-modal-side-col">
+                <div className="case-modal-section-title">Key Deliverables</div>
                 <ul className="case-modal-deliverables-list">
                   {activeModalProject.deliverables.map((item, idx) => (
                     <li key={idx} className="case-modal-deliverable-item">
@@ -499,6 +710,17 @@ export default function WorkPage() {
                     </li>
                   ))}
                 </ul>
+
+                <div className="case-modal-tags-box">
+                  <div className="case-modal-section-title" style={{ marginTop: '24px' }}>Capabilities</div>
+                  <div className="case-modal-tags-flex">
+                    {activeModalProject.tags.map((tag) => (
+                      <span key={tag} className="case-modal-tag-item">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

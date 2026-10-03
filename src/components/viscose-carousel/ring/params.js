@@ -110,7 +110,7 @@ export function defaultParams() {
     textFont: "Geist",
     textWeight: 500,
     textTracking: 0, // em
-    textColor: "#FF2D2D",
+    textColor: "#E8DCC8",
     textAt: 0.42, // fraction of the spread
     textTime: 0.95,
     textStagger: 0.015,
