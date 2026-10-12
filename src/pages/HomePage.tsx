@@ -17,7 +17,7 @@ const FOUNDERS = [
     name: 'Naman',
     role: 'Director',
     img: '/founder-1.png',
-    quote: '"We started Pixelpop because great brands deserve more than templates and trends."',
+    quote: '"We started Pixelpop Digital because great brands deserve more than templates and trends."',
   },
   {
     name: 'Guneesh',
@@ -308,7 +308,7 @@ export default function HomePage({ loading, setLoading }: HomePageProps) {
   }, [loading])
 
   return (
-    <div className="agency-viewport">
+    <div className="brand-viewport">
       {/* Infinity Loader on initial mount */}
       {loading && <InfinityLoader duration={2200} onDone={() => setLoading(false)} />}
 

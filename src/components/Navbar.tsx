@@ -74,20 +74,6 @@ export default function Navbar({ visible = true }: NavbarProps) {
     }
   }
 
-  const handleContactClick = (e: MouseEvent) => {
-    e.preventDefault()
-    const target = document.getElementById('contact')
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      navigate('/#contact')
-      setTimeout(() => {
-        const el = document.getElementById('contact')
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
-    }
-  }
-
   return (
     <nav className={`top-docked-nav ${visible ? 'nav-visible' : ''}`}>
       <div className="docked-nav-container">
@@ -106,7 +92,12 @@ export default function Navbar({ visible = true }: NavbarProps) {
           ))}
         </div>
 
-        <a href="#contact" className="docked-cta-btn" onClick={handleContactClick}>
+        <a
+          href="https://forms.gle/NSNfKBNK6jVb6o917"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="docked-cta-btn"
+        >
           <span>Let's Talk</span>
           <span className="cta-arrow">→</span>
         </a>

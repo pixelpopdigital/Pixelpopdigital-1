@@ -12,20 +12,20 @@ const LEGAL_MODALS = {
     label: "Privacy Policy",
     body: [
       "We collect only what's needed to run this site and respond to enquiries — things like your name, email and any project details you choose to share with us.",
-      "We never sell your data, and we don't share it with third parties beyond the tools we use to run the studio (email, hosting, analytics). You can ask us to delete anything we hold on you at any time.",
+      "We never sell your data, and we don't share it with third parties beyond the tools we use to run the brand (email, hosting, analytics). You can ask us to delete anything we hold on you at any time.",
     ],
   },
   terms: {
     label: "Terms of Use",
     body: [
-      "By using this site, you agree to browse it for its intended purpose — learning about Pixelpop and getting in touch about your project.",
-      "All content, design and code on this site belongs to Pixelpop unless otherwise credited. Don't reproduce it elsewhere without asking us first.",
+      "By using this site, you agree to browse it for its intended purpose — learning about Pixelpop Digital and getting in touch about your project.",
+      "All content, design and code on this site belongs to Pixelpop Digital unless otherwise credited. Don't reproduce it elsewhere without asking us first.",
     ],
   },
   inquiries: {
     label: "Inquiries",
     body: [
-      "New project? Press request? General question? Fill out our Query Form or send an email to hello@pixelpop.studio and we'll get back to you within two working days.",
+      "New project? Press request? General question? Fill out our Query Form or send an email to hello@pixelpopdigital.com and we'll get back to you within two working days.",
       "For anything urgent, mention it in the subject line and we'll bump it up the queue.",
     ],
     formUrl: "https://forms.gle/NSNfKBNK6jVb6o917",
@@ -34,10 +34,66 @@ const LEGAL_MODALS = {
 
 type ModalKey = keyof typeof LEGAL_MODALS;
 
+function InstagramIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ display: "block" }}>
+      <defs>
+        <radialGradient id="footer-ig-grad" cx="30%" cy="107%" r="130%" fx="30%" fy="107%">
+          <stop offset="0%" stopColor="#fdf497" />
+          <stop offset="5%" stopColor="#fdf497" />
+          <stop offset="45%" stopColor="#fd5949" />
+          <stop offset="60%" stopColor="#d6249f" />
+          <stop offset="90%" stopColor="#285AEB" />
+        </radialGradient>
+      </defs>
+      <rect width="24" height="24" rx="6.5" fill="url(#footer-ig-grad)" />
+      <rect x="5.5" y="5.5" width="13" height="13" rx="3.8" stroke="#ffffff" strokeWidth="1.8" fill="none" />
+      <circle cx="12" cy="12" r="3.2" stroke="#ffffff" strokeWidth="1.8" fill="none" />
+      <circle cx="15.8" cy="8.2" r="1" fill="#ffffff" />
+    </svg>
+  );
+}
+
+function TwitterIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ display: "block" }}>
+      <rect width="24" height="24" rx="6.5" fill="#1DA1F2" />
+      <path
+        fill="#ffffff"
+        d="M18.8 7.5a6.4 6.4 0 0 1-1.8.5 3.2 3.2 0 0 0 1.4-1.7 6.4 6.4 0 0 1-2 .8 3.16 3.16 0 0 0-5.4 2.9A9 9 0 0 1 4.5 6.8a3.16 3.16 0 0 0 1 4.2 3.1 3.1 0 0 1-1.4-.4v.04a3.16 3.16 0 0 0 2.5 3.1 3.2 3.2 0 0 1-1.4.05 3.16 3.16 0 0 0 2.9 2.2A6.35 6.35 0 0 1 4 17.3a8.96 8.96 0 0 0 4.9 1.4c5.8 0 9-4.8 9-9v-.4a6.5 6.5 0 0 0 1.6-1.6z"
+      />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ display: "block" }}>
+      <rect width="24" height="24" rx="6.5" fill="#0A66C2" />
+      <path
+        fill="#ffffff"
+        d="M7.4 6.2a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0zM4.8 8.6h2.5v7.6H4.8V8.6zm3.9 0h2.4v1.1h.03c.34-.64 1.18-1.32 2.43-1.32 2.6 0 3.08 1.71 3.08 3.94v3.88H14.1v-3.44c0-.82-.01-1.87-1.14-1.87-1.14 0-1.32.89-1.32 1.81v3.5H9.2v-7.6h-.5z"
+      />
+    </svg>
+  );
+}
+
 const SOCIALS = [
-  { label: "Instagram", href: "https://www.instagram.com/pixelpopdigital_/" },
-  { label: "Twitter", href: "https://x.com/pixelpopdigital" },
-  { label: "LinkedIn", href: "#" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/pixelpopdigital_/",
+    icon: <InstagramIcon />,
+  },
+  {
+    label: "Twitter",
+    href: "https://x.com/pixelpopdigital",
+    icon: <TwitterIcon />,
+  },
+  {
+    label: "LinkedIn",
+    href: "#",
+    icon: <LinkedInIcon />,
+  },
 ];
 
 function LegalModal({
@@ -188,13 +244,34 @@ export default function Footer() {
         }
         .footer-join:hover { background: #F3F1EA; }
         .footer-bottom-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
           font-family: 'Helvetica Neue', Arial, sans-serif;
           font-size: 13px;
-          color: rgba(243,241,234,0.5);
+          color: rgba(243,241,234,0.7);
           text-decoration: none;
-          transition: color 0.3s ease;
+          transition: all 0.25s ease;
         }
-        .footer-bottom-link:hover { color: #C81D1D; }
+        .footer-social-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 18px;
+          height: 18px;
+          border-radius: 5px;
+          overflow: hidden;
+          flex-shrink: 0;
+          transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+        }
+        .footer-bottom-link:hover {
+          color: #F3F1EA;
+          transform: translateY(-1.5px);
+        }
+        .footer-bottom-link:hover .footer-social-icon {
+          transform: scale(1.15);
+          filter: drop-shadow(0 2px 6px rgba(255,255,255,0.25));
+        }
 
         .legal-modal-backdrop {
           position: fixed;
@@ -291,16 +368,16 @@ export default function Footer() {
       <div className="footer-grid" style={styles.grid}>
         <div className="footer-brand-block">
           <h2 className="footer-brand-mark">
-            Pixelpop<sup>*</sup>
+            Pixelpop Digital<sup>*</sup>
           </h2>
           <p className="footer-tagline">
-            A marketing and social studio that turns brands into things
+            A brand that turns ideas into things
             people actually stop scrolling for.
           </p>
         </div>
 
         <div>
-          <div className="footer-col-label">Studio</div>
+          <div className="footer-col-label">Brand</div>
           {PLATFORM_LINKS.map((link) => (
             <a
               className="footer-link"
@@ -350,7 +427,7 @@ export default function Footer() {
 
       <div className="footer-bottom" style={styles.bottom}>
         <span style={styles.copy}>
-          © {year} Pixelpop. All rights reserved. Built to be seen.
+          © {year} Pixelpop Digital. All rights reserved. Built to be seen.
         </span>
         <div className="footer-bottom-links" style={styles.bottomLinks}>
           {SOCIALS.map((s) => (
@@ -361,7 +438,8 @@ export default function Footer() {
               target={s.href.startsWith("http") ? "_blank" : undefined}
               rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
             >
-              {s.label}
+              <span className="footer-social-icon">{s.icon}</span>
+              <span>{s.label}</span>
             </a>
           ))}
         </div>

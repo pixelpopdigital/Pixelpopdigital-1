@@ -93,14 +93,14 @@ export default function AboutSection() {
         }
       `}</style>
 
-      <div className="about-eyebrow">About Pixelpop</div>
+      <div className="about-eyebrow">About Pixelpop Digital</div>
 
       <h2 className="about-headline">
-        We're the studio that makes brands <em>impossible to scroll past.</em>
+        We're the brand that makes ideas <em>impossible to scroll past.</em>
       </h2>
 
       <p className="about-copy">
-        Pixelpop is a marketing and social studio built for brands who'd
+        Pixelpop Digital is a brand built for those who'd
         rather be talked about than blend in. We handle strategy,
         production and distribution under one roof — so the idea that
         gets pitched is the one that actually ships, looking exactly as

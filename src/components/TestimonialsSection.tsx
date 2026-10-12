@@ -11,7 +11,7 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Pixelpop took our socials from ignorable to inescapable in eight weeks flat. We've never had a launch move that fast.",
+      "Pixelpop Digital took our socials from ignorable to inescapable in eight weeks flat. We've never had a launch move that fast.",
     name: "Priya Nair",
     role: "Founder, Northline Sportswear",
     initials: "PN",
@@ -27,7 +27,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "Finally an agency that ships the same idea they pitch. No watered-down version three revisions in.",
+      "Finally a brand that ships the same idea they pitch. No watered-down version three revisions in.",
     name: "Elena Cross",
     role: "Brand Director, Meridian Coffee Co.",
     initials: "EC",
@@ -45,7 +45,7 @@ const TESTIMONIALS: Testimonial[] = [
     quote:
       "Every deliverable felt considered. Nothing generic, nothing rushed, and it showed in the numbers.",
     name: "Sofia Reyes",
-    role: "Marketing Lead, Ledger Studio",
+    role: "Brand Lead, Ledger",
     initials: "SR",
     color: "#5A5040",
   },

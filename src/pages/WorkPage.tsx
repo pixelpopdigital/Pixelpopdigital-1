@@ -41,9 +41,9 @@ const CASE_STUDIES: CaseStudy[] = [
     client: 'Fathom Audio',
     year: '2024',
     category: 'Growth & Media',
-    title: 'The Resonance Launch: Scaling High-Fidelity Studio Hardware DTC',
+    title: 'The Resonance Launch: Scaling High-Fidelity Audio Hardware DTC',
     shortDescription:
-      'Full-funnel paid media strategy, interactive frequency visualizers, and conversion storytelling for a premier audiophile studio monitor rollout.',
+      'Full-funnel paid media strategy, interactive frequency visualizers, and conversion storytelling for a premier audiophile monitor rollout.',
     monogram: 'FA',
     bgGradient: 'radial-gradient(circle at 45% 45%, rgba(232, 220, 200, 0.16) 0%, rgba(26, 23, 19, 0.9) 60%, #0a0a0a 100%)',
     highlightStat: '$2.4M',
@@ -93,7 +93,7 @@ const CASE_STUDIES: CaseStudy[] = [
       'Secured 220+ high-tier boutique retail accounts',
     ],
     quote: {
-      text: "Pixelpop took our socials and identity from ignorable to inescapable in eight weeks flat. We've never had a launch move that fast.",
+      text: "Pixelpop Digital took our socials and identity from ignorable to inescapable in eight weeks flat. We've never had a launch move that fast.",
       author: 'Priya Nair',
       role: 'Founder & CEO',
     },
@@ -127,7 +127,7 @@ const CASE_STUDIES: CaseStudy[] = [
       '+42% average order value increase',
     ],
     quote: {
-      text: 'Finally an agency that ships the same idea they pitch. No watered-down version three revisions in.',
+      text: 'Finally a brand that ships the same idea they pitch. No watered-down version three revisions in.',
       author: 'Elena Cross',
       role: 'Brand Director, Meridian',
     },
@@ -188,7 +188,7 @@ const CASE_STUDIES: CaseStudy[] = [
     challenge:
       'Skincare space is saturated with pseudo-science claims. Verve needed authentic, relatable, yet scientifically authoritative content.',
     solution:
-      'We designed an editorial studio series breaking down clinical ingredients into ASMR micro-documentaries, dermatologist reactions, and daily routine hooks.',
+      'We designed an editorial brand series breaking down clinical ingredients into ASMR micro-documentaries, dermatologist reactions, and daily routine hooks.',
     results: [
       '16.8M combined organic video impressions in Q3/Q4',
       '480K+ new engaged social followers across channels',
@@ -197,7 +197,7 @@ const CASE_STUDIES: CaseStudy[] = [
     quote: {
       text: 'Every single deliverable felt considered. Nothing generic, nothing rushed, and it showed directly in the community numbers.',
       author: 'Sofia Reyes',
-      role: 'Head of Marketing',
+      role: 'Head of Brand',
     },
     deliverables: [
       'Social Strategy & Content Playbook',
@@ -229,7 +229,7 @@ const CASE_STUDIES: CaseStudy[] = [
       'Featured globally in Wired and TechCrunch',
     ],
     quote: {
-      text: 'Pixelpop translated our proprietary audio mathematics into an unforgettable visual masterpiece.',
+      text: 'Pixelpop Digital translated our proprietary audio mathematics into an unforgettable visual masterpiece.',
       author: 'Dr. Aaron Vance',
       role: 'Co-Founder & Chief Scientist',
     },
@@ -263,7 +263,7 @@ const CASE_STUDIES: CaseStudy[] = [
       'Featured in Hodinkee and Wallpaper* Design Awards',
     ],
     quote: {
-      text: 'Pixelpop brought an authentic haute-horlogerie sensibility that rivaled centurylong heritage houses.',
+      text: 'Pixelpop Digital brought an authentic haute-horlogerie sensibility that rivaled centurylong heritage houses.',
       author: 'Maximilian Brandt',
       role: 'Founder & Master Watchmaker',
     },
@@ -310,7 +310,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'kroma-ceramics',
-    client: 'Kroma Studio',
+    client: 'Kroma',
     year: '2024',
     category: 'Production',
     title: 'Cinematic Lighting & Brand Film Direction for Scandinavian Ceramics',
@@ -365,7 +365,7 @@ const CASE_STUDIES: CaseStudy[] = [
       'Achieved profitability in month one of acquisition',
     ],
     quote: {
-      text: 'Pixelpop solved our online fragrance conversion problem through pure visual poetry and ruthless funnel optimization.',
+      text: 'Pixelpop Digital solved our online fragrance conversion problem through pure visual poetry and ruthless funnel optimization.',
       author: 'Julian Thorne',
       role: 'Head of Growth, Aura',
     },
@@ -534,7 +534,7 @@ export default function WorkPage() {
           </p>
         </div>
 
-        {/* Studio Metrics Strip */}
+        {/* Brand Metrics Strip */}
         <div className="work-metrics-strip">
           <div className="work-metric-item">
             <div className="work-metric-number">100%</div>
