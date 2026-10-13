@@ -133,6 +133,7 @@ export function defaultParams() {
     nameWeight: 500,
     idxSize: (16 / 1440) * 100, // a step lighter and smaller than the name
     idxFont: "Geist",
+
     idxWeight: 400,
     listSize: 0.9, // vw; the column's line height is unitless so rows follow
 

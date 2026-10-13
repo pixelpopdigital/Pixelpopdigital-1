@@ -660,46 +660,6 @@ export default function WorkPage() {
           </div>
         </div>
 
-        {/* ── Featured Brand Partners Showcase ──────────────────── */}
-        <div className="work-brand-partners-section">
-          <div className="work-brand-partners-header">
-            <div className="work-eyebrow-badge" style={{ marginBottom: 12 }}>
-              <span className="work-eyebrow-dot" /> Real Clients · Real Results
-            </div>
-            <h2 className="work-brand-partners-title">
-              Brands we've built <em>from the ground up.</em>
-            </h2>
-          </div>
-          <div className="work-brand-partners-grid">
-            {[
-              { id: 'hair-candy', name: 'Hair Candy', tag: 'Luxury Salon · Ashok Vihar', img: '/logo-haircandy.png', bg: 'radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.18) 0%, rgba(22, 18, 10, 0.95) 100%)' },
-              { id: 'detailing-street', name: 'Detailing Street', tag: 'Automotive Detailing', img: '/logo-detailingstreet.png', bg: 'radial-gradient(circle at 50% 45%, rgba(200, 29, 29, 0.2) 0%, rgba(22, 10, 10, 0.95) 100%)' },
-              { id: 'astro-kirti', name: 'Astro Kirti', tag: 'Astrology & Lifestyle', img: '/logo-astrokirti.png', bg: 'radial-gradient(circle at 50% 45%, rgba(42, 114, 76, 0.2) 0%, rgba(10, 18, 12, 0.95) 100%)' },
-            ].map((brand) => (
-              <div
-                key={brand.id}
-                className="work-brand-partner-card"
-                style={{ background: brand.bg }}
-                onClick={() => {
-                  const cs = CASE_STUDIES.find(c => c.id === brand.id)
-                  if (cs) setActiveModalProject(cs)
-                }}
-              >
-                <div className="work-brand-partner-logo-box">
-                  <img
-                    src={brand.img}
-                    alt={brand.name + ' logo'}
-                    className="work-brand-partner-img"
-                  />
-                </div>
-                <div className="work-brand-partner-info">
-                  <span className="work-brand-partner-name">{brand.name}</span>
-                  <span className="work-brand-partner-tag">{brand.tag}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* All Projects Grid */}
         <div className="work-grid">
