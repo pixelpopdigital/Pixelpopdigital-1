@@ -140,7 +140,7 @@ export default function TestimonialsSection() {
                       transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .testimonial-headline {
-          font-family: 'Georgia', 'Times New Roman', serif;
+          font-family: 'Times New Roman', Times, serif;
           font-weight: 400;
           font-size: clamp(30px, 4.6vw, 54px);
           line-height: 1.15;
