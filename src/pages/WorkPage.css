@@ -826,3 +826,158 @@
     right: 16px;
   }
 }
+
+/* ── Brand Logos in Work Cards & Modal ─────────────────────── */
+.work-card-brand-logo {
+  max-width: 170px;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.75));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.work-card:hover .work-card-brand-logo {
+  transform: scale(1.08);
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.9));
+}
+
+.case-modal-hero-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.case-modal-logo-badge {
+  background: rgba(10, 10, 12, 0.65);
+  border: 1px solid rgba(232, 220, 200, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 12px 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-modal-brand-logo {
+  max-width: 120px;
+  max-height: 70px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+}
+
+/* ── Featured Brand Partners Showcase ──────────────────────── */
+.work-brand-partners-section {
+  margin-bottom: 72px;
+  padding: 38px 36px;
+  background: rgba(16, 17, 20, 0.6);
+  border: 1px solid rgba(232, 220, 200, 0.12);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.work-brand-partners-header {
+  margin-bottom: 32px;
+}
+
+.work-brand-partners-title {
+  font-family: 'Georgia', serif;
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 400;
+  color: #F5F5F0;
+  line-height: 1.25;
+  margin: 12px 0 0;
+}
+
+.work-brand-partners-title em {
+  font-style: italic;
+  color: #E8DCC8;
+}
+
+.work-brand-partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.work-brand-partner-card {
+  background: rgba(22, 23, 28, 0.7);
+  border: 1px solid rgba(232, 220, 200, 0.1);
+  border-radius: 18px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-brand-partner-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(232, 220, 200, 0.35);
+  background: rgba(28, 30, 36, 0.9);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.work-brand-partner-logo-box {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.work-brand-partner-img {
+  max-width: 150px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+  transition: transform 0.35s ease;
+}
+
+.work-brand-partner-card:hover .work-brand-partner-img {
+  transform: scale(1.08);
+}
+
+.work-brand-partner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.work-brand-partner-name {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #F5F5F0;
+  letter-spacing: -0.01em;
+}
+
+.work-brand-partner-tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(232, 220, 200, 0.6);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .work-brand-partners-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .work-brand-partners-section {
+    padding: 28px 20px;
+    margin-bottom: 48px;
+  }
+}
+

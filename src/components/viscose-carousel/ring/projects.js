@@ -4,11 +4,29 @@ export const PROJECTS = [
     file: "pixelpop.jpg",
     name: "Ideas that move markets.",
     type: "",
-    year: "2023",
+    year: "2024",
+  },
+  {
+    file: "hair-candy.jpg",
+    name: "Hair Candy",
+    type: "Luxury Salon",
+    year: "2024",
+  },
+  {
+    file: "detailing-street.jpg",
+    name: "Detailing Street",
+    type: "Automotive Detailing",
+    year: "2024",
+  },
+  {
+    file: "astrokirti.jpg",
+    name: "Astro Kirti",
+    type: "Astrology & Lifestyle",
+    year: "2025",
   },
   {
     file: "fathom-audio.jpg",
-    name: "Fathom",
+    name: "Fathom Audio",
     type: "Growth & Media",
     year: "2024",
   },
@@ -29,12 +47,6 @@ export const PROJECTS = [
     name: "Verve",
     type: "Social Strategy",
     year: "2024",
-  },
-  {
-    file: "hyperion-labs.jpg",
-    name: "Hyperion",
-    type: "Production",
-    year: "2025",
   },
 ];
 

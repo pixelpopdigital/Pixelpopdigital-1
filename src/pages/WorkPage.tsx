@@ -20,6 +20,7 @@ export interface CaseStudy {
   title: string
   shortDescription: string
   monogram: string
+  logoImg?: string
   bgGradient: string
   highlightStat: string
   statLabel: string
@@ -36,6 +37,111 @@ export interface CaseStudy {
 }
 
 const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: 'hair-candy',
+    client: 'Hair Candy Luxury Salon',
+    year: '2024',
+    category: 'Branding & Social',
+    title: 'Hair Candy Ashok Vihar: Engineering Delhi’s Defining Luxury Salon Identity',
+    shortDescription:
+      'Opulent visual identity, bespoke champagne gold brand architecture, and viral social content engines elevating Hair Candy Ashok Vihar into a premier beauty destination.',
+    monogram: 'HC',
+    logoImg: '/logo-haircandy.png',
+    bgGradient: 'radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.22) 0%, rgba(28, 24, 18, 0.92) 60%, #0a0a0a 100%)',
+    highlightStat: '+240%',
+    statLabel: 'VIP Salon Inquiries & Bookings',
+    tags: ['Luxury Branding', 'Content Engine', 'Social Strategy', 'Art Direction'],
+    challenge:
+      'Standing out in a competitive luxury salon market in Ashok Vihar requires an unmistakable visual signature and social content that exudes effortless prestige.',
+    solution:
+      'We forged an editorial identity featuring bespoke luxury typography, high-contrast hair transformation reels, and a VIP experiential salon aesthetic.',
+    results: [
+      '+240% increase in weekly VIP appointments and bridal bookings',
+      'Over 3.4M organic video views across regional beauty audiences',
+      'Cemented Hair Candy as the benchmark luxury salon in Ashok Vihar',
+    ],
+    quote: {
+      text: 'Pixelpop brought an authentic haute-couture energy to Hair Candy. Our clientele immediately connected with the new aesthetic.',
+      author: 'Creative Director',
+      role: 'Hair Candy Luxury Salon (Ashok Vihar)',
+    },
+    deliverables: [
+      'Comprehensive Brand Identity & Guidelines',
+      'High-Fashion Video Production & Reels',
+      'In-Salon Luxury Menu & Printed Collateral',
+      'Targeted Digital Booking Launch Campaign',
+    ],
+  },
+  {
+    id: 'detailing-street',
+    client: 'Detailing Street',
+    year: '2024',
+    category: 'Motion & Acquisition',
+    title: 'Precision in Motion: Scaling High-Performance Automotive Aesthetics DTC',
+    shortDescription:
+      'High-octane visual identity, 4K macro ceramic coating reels, and customer acquisition engine scaling Detailing Street into full studio booking capacity.',
+    monogram: 'DS',
+    logoImg: '/logo-detailingstreet.png',
+    bgGradient: 'radial-gradient(circle at 50% 45%, rgba(200, 29, 29, 0.24) 0%, rgba(26, 18, 18, 0.92) 60%, #080808 100%)',
+    highlightStat: '3.8x',
+    statLabel: 'Supercar & Ceramic Bookings',
+    tags: ['Automotive Branding', 'Cinematic Motion', 'Lead Acquisition', 'Social Growth'],
+    challenge:
+      'Supercar and luxury vehicle owners require absolute trust and technical transparency before committing to paint protection and ceramic treatments.',
+    solution:
+      'We captured cinema-grade 4K macro footage of hydrophobic water sheeting and paint correction, packaged in an authoritative high-velocity brand identity.',
+    results: [
+      '3.8x increase in inbound ceramic coating & PPF inquiries',
+      '4.8M organic views across automotive detailing reels',
+      'Studio booked out 6 weeks in advance consistently',
+    ],
+    quote: {
+      text: 'The sheer visual craft Pixelpop delivered established immediate credibility with exotic car collectors and enthusiasts.',
+      author: 'Studio Director',
+      role: 'Detailing Street',
+    },
+    deliverables: [
+      'Shield & Wing Automotive Logomark Suite',
+      'Macro 4K Video Production & Viral Reels',
+      'High-Converting Studio Booking Funnels',
+      'Targeted Enthusiast Paid Media Strategy',
+    ],
+  },
+  {
+    id: 'astro-kirti',
+    client: 'Astro Kirti',
+    year: '2025',
+    category: 'Digital & Growth',
+    title: 'Cosmic Wisdom Reimagined: Sacred Astrology Meets Modern Digital Resonance',
+    shortDescription:
+      'Celestial visual identity, sacred geometry digital art, daily horoscope reels, and personalized consultation funnel for Astro Kirti.',
+    monogram: 'AK',
+    logoImg: '/logo-astrokirti.png',
+    bgGradient: 'radial-gradient(circle at 50% 45%, rgba(42, 114, 76, 0.26) 0%, rgba(18, 28, 22, 0.92) 60%, #080a08 100%)',
+    highlightStat: '+310%',
+    statLabel: 'Consultation Booking Surge',
+    tags: ['Digital Identity', 'Sacred Design', 'Community Growth', 'Consultation Funnel'],
+    challenge:
+      'Online astrological guidance often struggles to balance sacred ancient authenticity with an approachable, contemporary visual standard.',
+    solution:
+      'We crafted a deep emerald and celestial gold visual world, combining sacred zodiac iconography, episodic transit videos, and automated booking funnels.',
+    results: [
+      '+310% surge in one-on-one astrological consultations',
+      'Built a devoted community of 180K+ engaged cosmic followers',
+      'Over 5.6M organic views on weekly planetary transit forecasts',
+    ],
+    quote: {
+      text: 'Pixelpop Digital elevated our sacred astrological craft into a modern, beautifully respected digital presence.',
+      author: 'Kirti',
+      role: 'Founder & Astrologer, Astro Kirti',
+    },
+    deliverables: [
+      'Sacred Zodiac Visual Identity & Sacred Emblem',
+      'Episodic Planetary Transit Reels & Stories',
+      'Seamless 1-on-1 Consultation Booking Experience',
+      'Custom Astrological Chart Templates',
+    ],
+  },
   {
     id: 'fathom-audio',
     client: 'Fathom Audio',
@@ -554,7 +660,48 @@ export default function WorkPage() {
           </div>
         </div>
 
-        {/* 12 Projects Responsive Grid */}
+        {/* ── Featured Brand Partners Showcase ──────────────────── */}
+        <div className="work-brand-partners-section">
+          <div className="work-brand-partners-header">
+            <div className="work-eyebrow-badge" style={{ marginBottom: 12 }}>
+              <span className="work-eyebrow-dot" /> Real Clients · Real Results
+            </div>
+            <h2 className="work-brand-partners-title">
+              Brands we've built <em>from the ground up.</em>
+            </h2>
+          </div>
+          <div className="work-brand-partners-grid">
+            {[
+              { id: 'hair-candy', name: 'Hair Candy', tag: 'Luxury Salon · Ashok Vihar', img: '/logo-haircandy.png', bg: 'radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.18) 0%, rgba(22, 18, 10, 0.95) 100%)' },
+              { id: 'detailing-street', name: 'Detailing Street', tag: 'Automotive Detailing', img: '/logo-detailingstreet.png', bg: 'radial-gradient(circle at 50% 45%, rgba(200, 29, 29, 0.2) 0%, rgba(22, 10, 10, 0.95) 100%)' },
+              { id: 'astro-kirti', name: 'Astro Kirti', tag: 'Astrology & Lifestyle', img: '/logo-astrokirti.png', bg: 'radial-gradient(circle at 50% 45%, rgba(42, 114, 76, 0.2) 0%, rgba(10, 18, 12, 0.95) 100%)' },
+            ].map((brand) => (
+              <div
+                key={brand.id}
+                className="work-brand-partner-card"
+                style={{ background: brand.bg }}
+                onClick={() => {
+                  const cs = CASE_STUDIES.find(c => c.id === brand.id)
+                  if (cs) setActiveModalProject(cs)
+                }}
+              >
+                <div className="work-brand-partner-logo-box">
+                  <img
+                    src={brand.img}
+                    alt={brand.name + ' logo'}
+                    className="work-brand-partner-img"
+                  />
+                </div>
+                <div className="work-brand-partner-info">
+                  <span className="work-brand-partner-name">{brand.name}</span>
+                  <span className="work-brand-partner-tag">{brand.tag}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* All Projects Grid */}
         <div className="work-grid">
           {CASE_STUDIES.map((project, idx) => (
             <div
@@ -579,7 +726,15 @@ export default function WorkPage() {
                 </div>
 
                 <div className="work-card-center-art">
-                  <div className="work-card-monogram">{project.monogram}</div>
+                  {project.logoImg ? (
+                    <img
+                      src={project.logoImg}
+                      alt={project.client + ' logo'}
+                      className="work-card-brand-logo"
+                    />
+                  ) : (
+                    <div className="work-card-monogram">{project.monogram}</div>
+                  )}
                 </div>
               </div>
 
@@ -661,10 +816,23 @@ export default function WorkPage() {
               className="case-modal-hero"
               style={{ background: activeModalProject.bgGradient }}
             >
-              <div className="case-modal-eyebrow">
-                {activeModalProject.client} &bull; {activeModalProject.category} &bull; {activeModalProject.year}
+              <div className="case-modal-hero-top">
+                <div style={{ flex: 1 }}>
+                  <div className="case-modal-eyebrow">
+                    {activeModalProject.client} &bull; {activeModalProject.category} &bull; {activeModalProject.year}
+                  </div>
+                  <h2 id="modal-case-title" className="case-modal-title">{activeModalProject.title}</h2>
+                </div>
+                {activeModalProject.logoImg && (
+                  <div className="case-modal-logo-badge">
+                    <img
+                      src={activeModalProject.logoImg}
+                      alt={activeModalProject.client + ' logo'}
+                      className="case-modal-brand-logo"
+                    />
+                  </div>
+                )}
               </div>
-              <h2 id="modal-case-title" className="case-modal-title">{activeModalProject.title}</h2>
 
               <div className="case-modal-stats-row">
                 <div className="case-modal-stat-box">
