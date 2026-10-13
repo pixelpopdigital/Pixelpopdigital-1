@@ -1,11 +1,10 @@
 import React, { useRef, useState, type CSSProperties } from "react";
 import {
-  Palette,
+  Share2,
   Megaphone,
-  Rocket,
-  Camera,
   Globe,
-  Newspaper,
+  ShoppingCart,
+  Search,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -20,63 +19,58 @@ interface ServiceItem {
 
 const SERVICES: ServiceItem[] = [
   {
-    name: "Branding",
-    icon: Palette,
+    name: "Social Media Marketing",
+    icon: Share2,
     features: [
-      "Logo & identity systems",
-      "Brand guidelines",
-      "Visual language",
-      "Packaging & collateral",
+      "Content calendars tailored per platform",
+      "Reels, carousels & story creation",
+      "Community management & DM handling",
+      "Monthly analytics & growth reports",
+      "Trend-driven creative strategy",
     ],
   },
   {
-    name: "Social Strategy",
+    name: "PR & Meta & Google Ads",
     icon: Megaphone,
     features: [
-      "Platform-native calendars",
-      "Community management",
-      "Trend-responsive content",
-      "Analytics & reporting",
+      "Meta (Facebook & Instagram) ad campaigns",
+      "Google Search, Display & YouTube ads",
+      "Audience targeting & retargeting setup",
+      "A/B testing & conversion optimisation",
+      "Full performance reporting & ROAS tracking",
     ],
   },
   {
-    name: "Campaigns",
-    icon: Rocket,
-    features: [
-      "Concept development",
-      "Multi-channel rollout",
-      "Paid media strategy",
-      "Performance tracking",
-    ],
-  },
-  {
-    name: "Content Production",
-    icon: Camera,
-    features: [
-      "In-house photography",
-      "Video production",
-      "Copywriting",
-      "Post-production editing",
-    ],
-  },
-  {
-    name: "Digital & Web",
+    name: "Website Development",
     icon: Globe,
     features: [
-      "Custom site builds",
-      "E-commerce integration",
-      "Ongoing maintenance",
-      "Performance optimization",
+      "Custom-designed, mobile-first websites",
+      "Fast, SEO-ready builds (React / WordPress)",
+      "Landing pages built for conversions",
+      "Ongoing maintenance & updates",
+      "Performance & speed optimisation",
     ],
   },
   {
-    name: "PR & Comms",
-    icon: Newspaper,
+    name: "E-Commerce Solutions",
+    icon: ShoppingCart,
     features: [
-      "Press outreach",
-      "Crisis communications",
-      "Media relationships",
-      "Messaging & positioning",
+      "Shopify & WooCommerce store setup",
+      "Product listing & catalogue management",
+      "Payment gateway integration",
+      "Cart abandonment & upsell flows",
+      "Sales funnel strategy & optimisation",
+    ],
+  },
+  {
+    name: "SEO Optimization",
+    icon: Search,
+    features: [
+      "Full-site technical SEO audit",
+      "Keyword research & on-page optimisation",
+      "Link building & authority growth",
+      "Local SEO for maps & 'near me' searches",
+      "Monthly ranking & traffic reports",
     ],
   },
 ];
@@ -440,7 +434,7 @@ export default function ServicesSwipeCards() {
         <div className="swipe-bg-layer" aria-hidden="true" />
 
         <div className="swipe-content">
-          <div className="swipe-eyebrow">{"( 06 services )"}</div>
+          <div className="swipe-eyebrow">{"( 05 services )"}</div>
           <h2 className="swipe-headline">What we do</h2>
 
           <div className="swipe-stack">
