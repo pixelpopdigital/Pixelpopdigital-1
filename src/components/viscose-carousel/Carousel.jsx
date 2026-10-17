@@ -181,7 +181,20 @@ export default function Carousel() {
     // what makes the number landing and the ring launching the same moment.
     let launchReady = false;
     const readyWaiters = [];
-    const whenReady = (fn) => (launchReady ? fn() : readyWaiters.push(fn));
+    const whenReady = (fn) => {
+      if (launchReady) {
+        fn();
+      } else {
+        readyWaiters.push(fn);
+        setTimeout(() => {
+          if (!launchReady) {
+            launchReady = true;
+            for (const waiter of readyWaiters) waiter();
+            readyWaiters.length = 0;
+          }
+        }, 1200);
+      }
+    };
 
     const atlas = buildAtlas(IMAGE_FILES, (p) => {
       if (!disposed) loadProg = p;
