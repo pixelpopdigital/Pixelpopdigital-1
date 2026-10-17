@@ -11,42 +11,42 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Pixelpop Digital took our socials from ignorable to inescapable in eight weeks flat. We've never had a launch move that fast.",
-    name: "Priya Nair",
-    role: "Founder, Northline Sportswear",
-    initials: "PN",
+      "Pixelpop brought an authentic haute-couture energy to Hair Candy. Our clientele immediately connected with the new aesthetic.",
+    name: "Hair Candy",
+    role: "Luxury Salon (Ashok Vihar)",
+    initials: "HC",
+    color: "#D4AF37",
+  },
+  {
+    quote:
+      "The sheer visual craft Pixelpop delivered established immediate credibility with exotic car collectors and enthusiasts.",
+    name: "Detailing Street",
+    role: "Automotive Detailing & PPF",
+    initials: "DS",
     color: "#C81D1D",
   },
   {
     quote:
-      "The campaign strategy paid for itself twice over before the launch window even closed. Rare to see that kind of clarity.",
-    name: "Marcus Webb",
-    role: "CMO, Fathom Audio",
-    initials: "MW",
+      "Our new logo gave Elite Fitness Club the visual identity it deserved. Members and prospects immediately noticed the difference.",
+    name: "Elite Fitness Club",
+    role: "Premier Fitness Destination",
+    initials: "EF",
     color: "#B08D57",
   },
   {
     quote:
-      "Finally a brand that ships the same idea they pitch. No watered-down version three revisions in.",
-    name: "Elena Cross",
-    role: "Brand Director, Meridian Coffee Co.",
-    initials: "EC",
-    color: "#3E5C54",
-  },
-  {
-    quote:
-      "Sharpest creative team we've worked with, full stop. They think like editors, not just designers.",
-    name: "Jordan Lee",
-    role: "Founder, Harbor & Ash",
-    initials: "JL",
+      "Pixelpop designed a badge and brand system that carries real horsepower and luxury presence on every build.",
+    name: "Drivenchy",
+    role: "Bespoke Automotive Craft",
+    initials: "DV",
     color: "#8A4B3B",
   },
   {
     quote:
-      "Every deliverable felt considered. Nothing generic, nothing rushed, and it showed in the numbers.",
-    name: "Sofia Reyes",
-    role: "Brand Lead, Ledger",
-    initials: "SR",
+      "Every deliverable felt considered. Nothing generic, nothing rushed, and it showed in our brand recall and inbound clients.",
+    name: "RR Films",
+    role: "Film & TV Productions",
+    initials: "RR",
     color: "#5A5040",
   },
 ]

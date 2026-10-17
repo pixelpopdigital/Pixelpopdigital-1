@@ -25,30 +25,6 @@ export const PROJECTS = [
     year: "2025",
   },
   {
-    file: "fathom-audio.jpg",
-    name: "Fathom Audio",
-    type: "Growth & Media",
-    year: "2024",
-  },
-  {
-    file: "meridian-coffee.jpg",
-    name: "Meridian",
-    type: "Branding",
-    year: "2024",
-  },
-  {
-    file: "harbor-ash.jpg",
-    name: "Harbor & Ash",
-    type: "Digital & Web",
-    year: "2025",
-  },
-  {
-    file: "verve-botanicals.jpg",
-    name: "Verve",
-    type: "Social Strategy",
-    year: "2024",
-  },
-  {
     file: "elite-fitness.jpg",
     name: "Elite Fitness Club",
     type: "Logo Design",
@@ -82,6 +58,12 @@ export const PROJECTS = [
     file: "wshmouth.jpg",
     name: "WSH Mouth",
     type: "Brand Identity",
+    year: "2025",
+  },
+  {
+    file: "drivenchy.jpg",
+    name: "Drivenchy",
+    type: "Automotive Styling",
     year: "2025",
   },
 ];
